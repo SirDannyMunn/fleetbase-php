@@ -11,7 +11,7 @@ import { orderActions } from './resources/order';
  * // instance
  * const fleetbase = new Fleetbase();
   //test from Niamat's account:
- * const fleetbase = new Fleetbase('flb_live_L2HVcQF9SzH5hJFWI9Hx'); 
+ * const fleetbase = new Fleetbase(''); 
  * const contact = fleetbase.contacts.create({
  * 		name: 'Ron',
  * 		phone: '+65 9999 8888'
@@ -48,13 +48,11 @@ export default class Fleetbase {
             debug,
             publicKey,
         };
-
-        // test from Niamat's account: 
+         
         if (typeof publicKey !== 'string' || publicKey.length === 0) {
             throw new Error('⚠️ Invalid public key given to Fleetbase SDK');
         }
 
-        // test from Niamat's account: 
         if (!isNodeEnvironment() && publicKey.toLowerCase().startsWith('$')) {
             throw new Error('Secret key provided. You must use a public key with Fleetbase Javascript SDK!');
         }
