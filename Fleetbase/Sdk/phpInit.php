@@ -14,7 +14,6 @@ class phpInit {
             $client = new GuzzleHttp\Client(['base_uri' => 'https://api.fleetbase.io/v1/']);
             // Send a request to https://foo.com/api/test
             $resp = $client->request('GET', 'contacts');
-
             /*$curl = curl_init();
             curl_setopt_array($curl, array(
               CURLOPT_URL => 'https://api.fleetbase.io/v1/contacts',
@@ -37,7 +36,6 @@ class phpInit {
       }
   
       public function create_contacts() {
-
             return $resp;
       }
 }
