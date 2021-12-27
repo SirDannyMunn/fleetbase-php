@@ -40,7 +40,8 @@ class Fleetbase
             throw new Exception('⚠️ Invalid public key given to Fleetbase SDK')
         }
 
-        $this->client = new HttpClient($options);
+        $this->client = $client = new HttpClient($options);
+        $this->orders = new OrderService($client);
     }
 
     public static function newInstance() : Fleetbase
