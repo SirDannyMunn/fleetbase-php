@@ -19,8 +19,8 @@ namespace Fleetbase\Sdk;
  */
 class Resource
 {
-    private array $attributes;
-    private string $version;
+    private array $attributes = [];
+    private string $version = 'v1';
     private array $options = [];
     private array $dirtyAttributes = [];
     private array $changes = [];
