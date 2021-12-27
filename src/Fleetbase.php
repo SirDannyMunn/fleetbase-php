@@ -14,18 +14,48 @@ declare(strict_types=1);
 
 namespace Fleetbase\Sdk;
 
+use Exception;
+use HttpClient;
+
 /**
  * Fleetbase PHP SDK
  */
 class Fleetbase
 {
-    /**
-     * Returns a simple and friendly message.
-     *
-     * @return string
-     */
-    public function getHello(): string
+    private string $version;
+    private array $options;
+
+    public function __construct(string $publicKey, array $config = [], bool $debug = false)
     {
-        return 'Hello, World!';
+        $this->version = $config['version'] ?? 'v1';
+        $this->options = $options = [
+            'version' => $this->version,
+            'host' => $config['host'] ?? 'https://api.fleetbase.io',
+            'namespace' => $config['namespace'] ?? $this->version,
+            'debug' => $debug
+            'publicKey' => $publicKey
+        ];
+
+        if (!is_string($publicKey) && count($publicKey) === 0) {
+            throw new Exception('⚠️ Invalid public key given to Fleetbase SDK')
+        }
+
+        $this->client = new HttpClient($options);
+    }
+
+    public static function newInstance() : Fleetbase
+    {
+        $args = func_get_args();
+        return new static(...$args);
+    }
+
+    public function getVersion() : string
+    {
+        return $this->version;
+    }
+
+    public function getOptions() : array
+    {
+        return $this->options;
     }
 }

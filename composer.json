@@ -20,7 +20,9 @@
         "wiki": "https://github.com/fleetbase/fleetbase\u002Dphp/wiki"
     },
     "require": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "doctrine/inflector": "^2.0",
+        "guzzlehttp/guzzle": "^7.0"
     },
     "require-dev": {
         "jakub-onderka/php-parallel-lint": "^1",
