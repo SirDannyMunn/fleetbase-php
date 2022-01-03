@@ -34,6 +34,15 @@ class Utils
         return $inflector->classify($string);
     }
 
+    public static function createNamespace(string $namespace)
+    {
+        $words = preg_split('/(?=[A-Z])/', $namespace, -1,  PREG_SPLIT_NO_EMPTY);
+        $namespace = implode('-', $words);
+        $namespace = strtolower(Utils::pluralize($namespace));
+
+        return $namespace;
+    }
+
     public static function get($target, $key, $default = null)
     {
         if (is_null($key) || trim($key) === '') {

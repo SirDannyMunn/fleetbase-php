@@ -27,7 +27,7 @@ class Service
     public function __construct(string $resource, HttpClient $client, array $options = [])
     {
         $this->resource = $resource;
-        $this->namespace = strtolower(Utils::pluralize($resource));
+        $this->namespace = Utils::createNamespace($resource);
         $this->client = $client;
         $this->options = $options;
     }
