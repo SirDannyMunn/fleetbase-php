@@ -8,11 +8,13 @@ use Fleetbase\Sdk\Fleetbase;
 
 class FleetbaseTest extends TestCase
 {
-    public function testGetHello()
+    public function testInitializeSdk()
     {
-        $object = \Mockery::mock(Fleetbase::class);
-        $object->shouldReceive('getHello')->passthru();
+        $publicKey = 'flb_test_M9H0c9Iohdc9HQsEcJtR';
+    
+        $sdk = \Mockery::mock(Fleetbase::class)->setConstructorArgs([$publicKey]);
+        $sdk->shouldReceive('getVersion')->passthru();
 
-        $this->assertSame('Hello, World!', $object->getHello());
+        $this->assertSame('v1', $sdk->getVersion());
     }
 }

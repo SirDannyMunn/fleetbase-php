@@ -32,12 +32,12 @@ class Fleetbase
             'version' => $this->version,
             'host' => $config['host'] ?? 'https://api.fleetbase.io',
             'namespace' => $config['namespace'] ?? $this->version,
-            'debug' => $debug
+            'debug' => $debug,
             'publicKey' => $publicKey
         ];
 
         if (!is_string($publicKey) && count($publicKey) === 0) {
-            throw new Exception('⚠️ Invalid public key given to Fleetbase SDK')
+            throw new Exception('⚠️ Invalid public key given to Fleetbase SDK');
         }
 
         $this->client = $client = new HttpClient($options);

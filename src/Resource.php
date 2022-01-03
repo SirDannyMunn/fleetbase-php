@@ -83,7 +83,7 @@ class Resource
     public function isAttributeFilled($property) {
         if (is_array($property)) {
             return $this->hasAttribute($property) && Utils::arrayEvery($property, function ($prop) {
-                return !empty($this->getAttribute($prop);
+                return !empty($this->getAttribute($prop));
             });
         }
 

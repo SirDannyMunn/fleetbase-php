@@ -1,26 +1,26 @@
 {
-    "name": "fleetbase\/fleetbase\u002Dphp",
-    "description": "Fleetbase\u0020PHP\u0020SDK",
+    "name": "fleetbase/fleetbase-php",
+    "description": "Fleetbase\\PHP\\SDK",
     "type": "library",
-    "keywords": ["fleetbase", "logistics\u0020api", "ecommerce\u0020api", "fleetbase\u0020sdk", "fleetbase\u0020api"],
-    "homepage": "https://github.com/fleetbase/fleetbase\u002Dphp",
+    "keywords": ["fleetbase", "logistics-api", "ecommerce-api", "fleetbase-sdk", "fleetbase-api"],
+    "homepage": "https://github.com/fleetbase/fleetbase-php",
     "license": "MIT",
     "authors": [
         {
-            "name": "Ronald\u0020A.\u0020Richardson",
-            "email": "ron\u0040fleetbase.io",
-            "homepage": "https\u003A\/\/fleetbase.io"
+            "name": "Ronald A. Richardson",
+            "email": "ron@fleetbase.io",
+            "homepage": "https://fleetbase.io"
         }
     ],
     "support": {
-        "docs": "https://fleetbase.github.io/fleetbase\u002Dphp/",
-        "issues": "https://github.com/fleetbase/fleetbase\u002Dphp/issues",
-        "rss": "https://github.com/fleetbase/fleetbase\u002Dphp/releases.atom",
-        "source": "https://github.com/fleetbase/fleetbase\u002Dphp.git",
-        "wiki": "https://github.com/fleetbase/fleetbase\u002Dphp/wiki"
+        "docs": "https://fleetbase.github.io/fleetbase-php/",
+        "issues": "https://github.com/fleetbase/fleetbase-php/issues",
+        "rss": "https://github.com/fleetbase/fleetbase-php/releases.atom",
+        "source": "https://github.com/fleetbase/fleetbase-php.git",
+        "wiki": "https://github.com/fleetbase/fleetbase-php/wiki"
     },
     "require": {
-        "php": "^7.2",
+        "php": "^7.4",
         "doctrine/inflector": "^2.0",
         "guzzlehttp/guzzle": "^7.0"
     },
