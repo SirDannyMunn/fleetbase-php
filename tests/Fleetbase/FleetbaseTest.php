@@ -6,7 +6,6 @@ namespace Fleetbase\Sdk\Test\Fleetbase;
 
 use Fleetbase\Sdk\Fleetbase;
 use Fleetbase\Sdk\Test\TestCase;
-use Fleetbase\Sdk\Utils;
 
 final class FleetbaseTest extends TestCase
 {

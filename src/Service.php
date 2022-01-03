@@ -34,8 +34,8 @@ class Service
 
     private function resolve($data)
     {
-        $class = "Resource\\" . Utils::classify($this->resource);
-        return new $class($data, $this->client);
+        $class = "Fleetbase\\Sdk\\Resources\\" . Utils::classify($this->resource);
+        return new $class((array) $data, $this);
     }
 
     private function uri(?string $path = null)

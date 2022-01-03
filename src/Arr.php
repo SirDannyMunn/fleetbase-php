@@ -19,7 +19,7 @@ namespace Fleetbase\Sdk;
  */
 class Arr
 {
-    public static function even(array $arr, callable $predicate)
+    public static function every(array $arr, callable $predicate)
     {
         foreach ($arr as $e) {
             if (!call_user_func($predicate, $e)) {
@@ -32,11 +32,17 @@ class Arr
 
     public static function any(array $arr, callable $predicate)
     {
-        return !static::even(
+        return !static::every(
             $arr,
             function ($e) use ($predicate) {
                 return !call_user_func($predicate, $e);
             }
         );
+    }
+
+    public static function first(array $arr)
+    {
+        $arr = array_values($arr);
+        return $arr[0] ?? -1;
     }
 }

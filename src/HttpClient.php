@@ -16,6 +16,7 @@ namespace Fleetbase\Sdk;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
+use Exception;
 
 /**
  * Fleetbase PHP SDK HTTP Client
@@ -109,10 +110,25 @@ class HttpClient
         // make request via client
         $this->lastResponse = $response = $this->client->request($method, $path, $options);
 
+        // run before hook
+        if (isset($options['onBefore']) && is_callable($options['onBefore'])) {
+            call_user_func($options['onBefore']);
+        }
+
         // get response body and contents
         $body = $response->getBody();
         $contents = $body->getContents();
         $json = json_decode($contents);
+
+        // if error response throw exception
+        if (is_object($json) && isset($json->error)) {
+            throw new Exception($json->error);
+        }
+
+        // run after hook
+        if (isset($options['onAfter']) && is_callable($options['onAfter'])) {
+            call_user_func($options['onAfter'], $json);
+        }
 
         return $json;
     }

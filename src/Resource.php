@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace Fleetbase\Sdk;
 
+use Exception;
+
 /**
  * Fleetbase PHP SDK Base Resource
  */
@@ -43,14 +45,43 @@ class Resource
         if ($name === 'id') {
             return $this->getAttribute('id');
         }
+
+        if ($name === 'isDestroyed') {
+            return isset($this->attributes['deleted']) && $this->attributes['deleted'] === true;
+        }
     }
 
-    public function create($attributes = [])
+    public function create($attributes = [], $options = [])
     {
+        $options = array_merge($options, [
+            'onAfter' => function ($response) {
+                $this->mergeAttributes((array) $response);
+            }
+        ]);
+        
+        return $this->service->create($attributes, $options = []);
     }
 
-    public function update($attributes = [])
+    public function update($attributes = [], $options = [])
     {
+        $options = array_merge($options, [
+            'onAfter' => function ($response) {
+                $this->mergeAttributes((array) $response);
+            }
+        ]);
+
+        return $this->service->update($this->id, $attributes, $options);
+    }
+
+    public function destroy($options = [])
+    {
+        $options = array_merge($options, [
+            'onAfter' => function ($response) {
+                $this->resetAttributes((array) $response);
+            }
+        ]);
+
+        return $this->service->destroy($this->id, $options);
     }
 
     public function save(?array $options = [])
@@ -64,8 +95,12 @@ class Resource
         return $this->update($attributes);
     }
 
-    public function getAttribute(string $attribute, $defaultValue = null)
+    public function getAttribute($attribute, $defaultValue = null)
     {
+        if (is_array($attribute)) {
+            return $this->getAttributes($attribute);
+        }
+
         return Utils::get($this->attributes, $attribute, $defaultValue);
     }
 
@@ -97,12 +132,12 @@ class Resource
         return $this->hasAttribute($property) && !empty($this->getAttribute($property));
     }
 
-    public function getAttributes(array $properties = [])
+    public function getAttributes(?array $properties = [])
     {
         $attributes = [];
 
         if (empty($properties)) {
-            return $this->getAttributes(array_keys($this->attributes));
+            return $this->attributes;
         }
 
         if (is_string($properties)) {
@@ -135,6 +170,11 @@ class Resource
     private function mergeAttributes(array $attributes = [])
     {
         $this->attributes = array_merge($this->attributes, $attributes);
+    }
+
+    private function resetAttributes(array $attributes)
+    {
+        $this->attributes = $attributes;
     }
 
     private function getDirtyAttributes(): array
