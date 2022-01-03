@@ -1,4 +1,4 @@
-# fleetbase/fleetbase-php
+# Fleetbase PHP SDK
 
 [![Source Code][badge-source]][source]
 [![Latest Version][badge-release]][packagist]
@@ -15,6 +15,11 @@ participating in this project and its community, you are expected to uphold this
 code.
 
 
+## Requirements
+
+PHP 7.4 and later.
+
+
 ## Installation
 
 The preferred method of installation is via [Composer][]. Run the following
@@ -25,6 +30,22 @@ command to install the package and add it as a requirement to your project's
 composer require fleetbase/fleetbase-php
 ```
 
+
+## Quick Start
+
+Simple usage looks like:
+
+```php
+$fleetbase = new \Fleetbase\Sdk\Fleetbase('< api key here >');
+
+$spaceNeedle = $fleetbase->places->create([
+    'name' => 'Space Needle',
+    'street1' => '400 Broad Street',
+    'city' => 'Seattle',
+    'state' => 'WA',
+    'country' => 'US'
+]);
+```
 
 ## Documentation
 
