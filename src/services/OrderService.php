@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  *
  * @copyright Copyright (c) Fleetbase Pte Ltd. <ron@fleetbase.io>
- * @license http://opensource.org/licenses/MIT MIT
+ * @license   http://opensource.org/licenses/MIT MIT
  */
 
 declare(strict_types=1);
@@ -22,11 +22,13 @@ use Fleetbase\Sdk\HttpClient;
  */
 class OrderService extends Service
 {
-    public function __constructor(HttpClient $client, array $options = []) {
+    public function __construct(HttpClient $client, array $options = [])
+    {
         parent::__construct('Order', $client, $options);
     }
 
-    public function getDistanceAndTime($id, $options = []) {
+    public function getDistanceAndTime($id, $options = [])
+    {
         $uri = $this->uri($id . '/distance-and-time');
         
         return $this->client->get($uri, [], $options);

@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  *
  * @copyright Copyright (c) Fleetbase Pte Ltd. <ron@fleetbase.io>
- * @license http://opensource.org/licenses/MIT MIT
+ * @license   http://opensource.org/licenses/MIT MIT
  */
 
 declare(strict_types=1);
@@ -22,7 +22,8 @@ use Fleetbase\Sdk\Service;
  */
 class Driver extends Resource
 {
-    public function __constructor(array $attributes = [], ?Service $service = null, array $options = []) {
+    public function __constructor(array $attributes = [], ?Service $service = null, array $options = [])
+    {
         parent::__construct($attributes, $service, $options);
     }
 }

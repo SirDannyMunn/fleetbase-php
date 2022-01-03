@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  *
  * @copyright Copyright (c) Fleetbase Pte Ltd. <ron@fleetbase.io>
- * @license http://opensource.org/licenses/MIT MIT
+ * @license   http://opensource.org/licenses/MIT MIT
  */
 
 declare(strict_types=1);
@@ -22,11 +22,13 @@ use Fleetbase\Sdk\Services\OrderService;
  */
 class Order extends Resource
 {
-    public function __constructor(array $attributes = [], ?OrderService $service = null, array $options = []) {
+    public function __constructor(array $attributes = [], ?OrderService $service = null, array $options = [])
+    {
         parent::__construct($attributes, $service, $options);
     }
 
-    public function getDistanceAndTime() {
+    public function getDistanceAndTime()
+    {
         return $this->service->getDistanceAndTime($this->id);
     }
 }

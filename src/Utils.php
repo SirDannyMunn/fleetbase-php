@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  *
  * @copyright Copyright (c) Fleetbase Pte Ltd. <ron@fleetbase.io>
- * @license http://opensource.org/licenses/MIT MIT
+ * @license   http://opensource.org/licenses/MIT MIT
  */
 
 declare(strict_types=1);
@@ -48,7 +48,7 @@ class Utils
             if (is_object($target) && !isset($target->{$segment})) {
                 return static::value($default);
             }
-            
+
             if (is_array($target) && isset($target[$segment])) {
                 $target = $target[$segment];
             }
@@ -66,19 +66,12 @@ class Utils
         return $value instanceof Closure ? $value() : $value;
     }
 
-    public static function arrayEven(array $arr, callable $predicate) {
-        foreach ($arr as $e) {
-            if (!call_user_func($predicate, $e)) {
-                 return false;
-            }
-        }
-    
-        return true;
-    }
-    
-    public static function arrayAny(array $arr, callable $predicate) {
-        return !static::arrayEven($arr, function ($e) use ($predicate) {
-            return !call_user_func($predicate, $e);
-        });
+    public static function dd()
+    {
+        array_map(function ($x) {
+            var_dump($x);
+        }, func_get_args());
+
+        die(1);
     }
 }

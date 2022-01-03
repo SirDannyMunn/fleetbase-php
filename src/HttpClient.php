@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  *
  * @copyright Copyright (c) Fleetbase Pte Ltd. <ron@fleetbase.io>
- * @license http://opensource.org/licenses/MIT MIT
+ * @license   http://opensource.org/licenses/MIT MIT
  */
 
 declare(strict_types=1);
@@ -76,21 +76,23 @@ class HttpClient
     {
         $options = $options ?? $this->getOptions();
 
-        $client = new Client([
+        $client = new Client(
+            [
             'base_uri' => $this->buildRequestUrl(),
             'headers' => [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer ' . $options['publicKey']
             ]
-        ]);
+            ]
+        );
 
         return $client;
     }
 
     private function buildRequestUrl(string $path = '') : string
     {
-        $url = trim($this->host . $this->namespace . '/' . $path);
+        $url = trim($this->host . '/' . $this->namespace . '/' . $path);
         return $url;
     }
 
@@ -109,7 +111,7 @@ class HttpClient
 
         // get response body and contents
         $body = $response->getBody();
-        $contents = $responseBody->getContents();
+        $contents = $body->getContents();
         $json = json_decode($contents);
 
         return $json;
@@ -117,26 +119,26 @@ class HttpClient
 
     public function post(string $path, array $data = [], $options = [])
     {
-        return $this-makeRequest($path, 'POST', $data, $options);
+        return $this->makeRequest($path, 'POST', $data, $options);
     }
 
     public function get(string $path, array $data = [], $options = [])
     {
-        return $this-makeRequest($path, 'GET', $data, $options);
+        return $this->makeRequest($path, 'GET', $data, $options);
     }
 
     public function delete(string $path, array $data = [], $options = [])
     {
-        return $this-makeRequest($path, 'DELETE', $data, $options);
+        return $this->makeRequest($path, 'DELETE', $data, $options);
     }
 
     public function put(string $path, array $data = [], $options = [])
     {
-        return $this-makeRequest($path, 'PUT', $data, $options);
+        return $this->makeRequest($path, 'PUT', $data, $options);
     }
 
     public function patch(string $path, array $data = [], $options = [])
     {
-        return $this-makeRequest($path, 'PATCH', $data, $options);
+        return $this->makeRequest($path, 'PATCH', $data, $options);
     }
 }

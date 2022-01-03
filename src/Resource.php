@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  *
  * @copyright Copyright (c) Fleetbase Pte Ltd. <ron@fleetbase.io>
- * @license http://opensource.org/licenses/MIT MIT
+ * @license   http://opensource.org/licenses/MIT MIT
  */
 
 declare(strict_types=1);
@@ -29,7 +29,7 @@ class Resource
     private bool $isDestroying = false;
     private bool $isReloading = false;
     private ?Service $service;
-    
+
     public function __construct(array $attributes = [], ?Service $service = null, ?array $options = [])
     {
         $this->attributes = $attributes;
@@ -47,12 +47,10 @@ class Resource
 
     public function create($attributes = [])
     {
-
     }
 
     public function update($attributes = [])
     {
-
     }
 
     public function save(?array $options = [])
@@ -62,35 +60,45 @@ class Resource
         if (!$this->id) {
             return $this->create($attributes);
         }
-        
+
         return $this->update($attributes);
     }
 
-    public function getAttribute(string $attribute, $defaultValue = null) {
+    public function getAttribute(string $attribute, $defaultValue = null)
+    {
         return Utils::get($this->attributes, $attribute, $defaultValue);
     }
 
-    public function hasAttribute($property) {
+    public function hasAttribute($property)
+    {
         if (is_array($property)) {
-            return Utils::arrayEvery($property, function ($prop) {
-                return $this->hasAttribute($prop);
-            });
+            return Arr::every(
+                $property,
+                function ($prop) {
+                    return $this->hasAttribute($prop);
+                }
+            );
         }
 
         return in_array($property, array_keys($this->attributes ?? []));
     }
 
-    public function isAttributeFilled($property) {
+    public function isAttributeFilled($property)
+    {
         if (is_array($property)) {
-            return $this->hasAttribute($property) && Utils::arrayEvery($property, function ($prop) {
-                return !empty($this->getAttribute($prop));
-            });
+            return $this->hasAttribute($property) && Arr::every(
+                $property,
+                function ($prop) {
+                    return !empty($this->getAttribute($prop));
+                }
+            );
         }
 
         return $this->hasAttribute($property) && !empty($this->getAttribute($property));
     }
 
-    public function getAttributes(array $properties = []) {
+    public function getAttributes(array $properties = [])
+    {
         $attributes = [];
 
         if (empty($properties)) {
@@ -98,7 +106,7 @@ class Resource
         }
 
         if (is_string($properties)) {
-            return $this->getAttributes([ $properties ]);
+            return $this->getAttributes([$properties]);
         }
 
         if (!is_array($properties)) {
@@ -129,7 +137,7 @@ class Resource
         $this->attributes = array_merge($this->attributes, $attributes);
     }
 
-    private function getDirtyAttributes() : array
+    private function getDirtyAttributes(): array
     {
         return $this->dirtyAttributes;
     }
@@ -141,6 +149,5 @@ class Resource
 
     private function setFlags(array $flags = [])
     {
-
     }
 }

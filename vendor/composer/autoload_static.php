@@ -4,15 +4,15 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit943401cd38ce5f016da8d5863e38879e
+class ComposerStaticInitfc5fc5108939805e5e233eb748dce4ed
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
@@ -45,6 +45,7 @@ class ComposerStaticInit943401cd38ce5f016da8d5863e38879e
             'Psr\\Container\\' => 14,
             'Prophecy\\' => 9,
             'PhpParser\\' => 10,
+            'PhpOption\\' => 10,
             'PackageVersions\\' => 16,
             'PHPStan\\PhpDocParser\\' => 21,
             'PHPStan\\' => 8,
@@ -58,6 +59,7 @@ class ComposerStaticInit943401cd38ce5f016da8d5863e38879e
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
+            'GrahamCampbell\\ResultType\\' => 26,
         ),
         'F' => 
         array (
@@ -66,6 +68,7 @@ class ComposerStaticInit943401cd38ce5f016da8d5863e38879e
         ),
         'D' => 
         array (
+            'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Inflector\\' => 19,
             'DeepCopy\\' => 9,
@@ -140,6 +143,10 @@ class ComposerStaticInit943401cd38ce5f016da8d5863e38879e
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
+        'PhpOption\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
         'PackageVersions\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/package-versions-deprecated/src/PackageVersions',
@@ -169,6 +176,10 @@ class ComposerStaticInit943401cd38ce5f016da8d5863e38879e
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
+        'GrahamCampbell\\ResultType\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
+        ),
         'Fleetbase\\Sdk\\Test\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
@@ -176,6 +187,10 @@ class ComposerStaticInit943401cd38ce5f016da8d5863e38879e
         'Fleetbase\\Sdk\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -208,8 +223,6 @@ class ComposerStaticInit943401cd38ce5f016da8d5863e38879e
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'ExampleClass' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/tests/skip-on-5.3/class.php',
-        'ExampleTrait' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/tests/skip-on-5.3/trait.php',
         'Hamcrest\\Arrays\\IsArray' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
         'Hamcrest\\Arrays\\IsArrayContaining' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContaining.php',
         'Hamcrest\\Arrays\\IsArrayContainingInAnyOrder' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContainingInAnyOrder.php',
@@ -278,37 +291,43 @@ class ComposerStaticInit943401cd38ce5f016da8d5863e38879e
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
-        'JakubOnderka\\PhpParallelLint\\ArrayIterator' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Settings.php',
-        'JakubOnderka\\PhpParallelLint\\Blame' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Error.php',
-        'JakubOnderka\\PhpParallelLint\\ConsoleWriter' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Output.php',
-        'JakubOnderka\\PhpParallelLint\\Error' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Error.php',
-        'JakubOnderka\\PhpParallelLint\\ErrorFormatter' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/ErrorFormatter.php',
-        'JakubOnderka\\PhpParallelLint\\Exception' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/exceptions.php',
-        'JakubOnderka\\PhpParallelLint\\FileWriter' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Output.php',
-        'JakubOnderka\\PhpParallelLint\\IWriter' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Output.php',
-        'JakubOnderka\\PhpParallelLint\\InvalidArgumentException' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/exceptions.php',
-        'JakubOnderka\\PhpParallelLint\\JsonOutput' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Output.php',
-        'JakubOnderka\\PhpParallelLint\\Manager' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Manager.php',
-        'JakubOnderka\\PhpParallelLint\\MultipleWriter' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Output.php',
-        'JakubOnderka\\PhpParallelLint\\NotExistsPathException' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/exceptions.php',
-        'JakubOnderka\\PhpParallelLint\\NullWriter' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Output.php',
-        'JakubOnderka\\PhpParallelLint\\Output' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Output.php',
-        'JakubOnderka\\PhpParallelLint\\ParallelLint' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/ParallelLint.php',
-        'JakubOnderka\\PhpParallelLint\\Process\\GitBlameProcess' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Process/GitBlameProcess.php',
-        'JakubOnderka\\PhpParallelLint\\Process\\LintProcess' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Process/LintProcess.php',
-        'JakubOnderka\\PhpParallelLint\\Process\\PhpExecutable' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Process/PhpExecutable.php',
-        'JakubOnderka\\PhpParallelLint\\Process\\PhpProcess' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Process/PhpProcess.php',
-        'JakubOnderka\\PhpParallelLint\\Process\\Process' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Process/Process.php',
-        'JakubOnderka\\PhpParallelLint\\Process\\SkipLintProcess' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Process/SkipLintProcess.php',
-        'JakubOnderka\\PhpParallelLint\\RecursiveDirectoryFilterIterator' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Manager.php',
-        'JakubOnderka\\PhpParallelLint\\Result' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Result.php',
-        'JakubOnderka\\PhpParallelLint\\RunTimeException' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/exceptions.php',
-        'JakubOnderka\\PhpParallelLint\\Settings' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Settings.php',
-        'JakubOnderka\\PhpParallelLint\\SyntaxError' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Error.php',
-        'JakubOnderka\\PhpParallelLint\\TextOutput' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Output.php',
-        'JakubOnderka\\PhpParallelLint\\TextOutputColored' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/Output.php',
+        'JakubOnderka\\PhpParallelLint\\Application' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Application.php',
+        'JakubOnderka\\PhpParallelLint\\ArrayIterator' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Settings.php',
+        'JakubOnderka\\PhpParallelLint\\Blame' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Error.php',
+        'JakubOnderka\\PhpParallelLint\\CheckstyleOutput' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Output.php',
+        'JakubOnderka\\PhpParallelLint\\ConsoleWriter' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Output.php',
+        'JakubOnderka\\PhpParallelLint\\Contracts\\SyntaxErrorCallback' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Contracts/SyntaxErrorCallback.php',
+        'JakubOnderka\\PhpParallelLint\\Error' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Error.php',
+        'JakubOnderka\\PhpParallelLint\\ErrorFormatter' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/ErrorFormatter.php',
+        'JakubOnderka\\PhpParallelLint\\Exception' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/exceptions.php',
+        'JakubOnderka\\PhpParallelLint\\FileWriter' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Output.php',
+        'JakubOnderka\\PhpParallelLint\\GitLabOutput' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Output.php',
+        'JakubOnderka\\PhpParallelLint\\IWriter' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Output.php',
+        'JakubOnderka\\PhpParallelLint\\InvalidArgumentException' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/exceptions.php',
+        'JakubOnderka\\PhpParallelLint\\JsonOutput' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Output.php',
+        'JakubOnderka\\PhpParallelLint\\Manager' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Manager.php',
+        'JakubOnderka\\PhpParallelLint\\MultipleWriter' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Output.php',
+        'JakubOnderka\\PhpParallelLint\\NotExistsClassException' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/exceptions.php',
+        'JakubOnderka\\PhpParallelLint\\NotExistsPathException' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/exceptions.php',
+        'JakubOnderka\\PhpParallelLint\\NotImplementCallbackException' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/exceptions.php',
+        'JakubOnderka\\PhpParallelLint\\NullWriter' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Output.php',
+        'JakubOnderka\\PhpParallelLint\\Output' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Output.php',
+        'JakubOnderka\\PhpParallelLint\\ParallelLint' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/ParallelLint.php',
+        'JakubOnderka\\PhpParallelLint\\Process\\GitBlameProcess' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Process/GitBlameProcess.php',
+        'JakubOnderka\\PhpParallelLint\\Process\\LintProcess' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Process/LintProcess.php',
+        'JakubOnderka\\PhpParallelLint\\Process\\PhpExecutable' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Process/PhpExecutable.php',
+        'JakubOnderka\\PhpParallelLint\\Process\\PhpProcess' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Process/PhpProcess.php',
+        'JakubOnderka\\PhpParallelLint\\Process\\Process' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Process/Process.php',
+        'JakubOnderka\\PhpParallelLint\\Process\\SkipLintProcess' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Process/SkipLintProcess.php',
+        'JakubOnderka\\PhpParallelLint\\RecursiveDirectoryFilterIterator' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Manager.php',
+        'JakubOnderka\\PhpParallelLint\\Result' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Result.php',
+        'JakubOnderka\\PhpParallelLint\\RunTimeException' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/exceptions.php',
+        'JakubOnderka\\PhpParallelLint\\Settings' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Settings.php',
+        'JakubOnderka\\PhpParallelLint\\SyntaxError' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Error.php',
+        'JakubOnderka\\PhpParallelLint\\TextOutput' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Output.php',
+        'JakubOnderka\\PhpParallelLint\\TextOutputColored' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/Output.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
-        'JsonSerializable' => __DIR__ . '/..' . '/jakub-onderka/php-parallel-lint/src/JsonSerializable.php',
+        'JsonSerializable' => __DIR__ . '/..' . '/php-parallel-lint/php-parallel-lint/src/polyfill.php',
         'Nette\\ArgumentOutOfRangeException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
         'Nette\\Bootstrap\\Configurator' => __DIR__ . '/..' . '/nette/bootstrap/src/Bootstrap/Configurator.php',
         'Nette\\Bootstrap\\Extensions\\ConstantsExtension' => __DIR__ . '/..' . '/nette/bootstrap/src/Bootstrap/Extensions/ConstantsExtension.php',
@@ -1052,10 +1071,10 @@ class ComposerStaticInit943401cd38ce5f016da8d5863e38879e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit943401cd38ce5f016da8d5863e38879e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit943401cd38ce5f016da8d5863e38879e::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit943401cd38ce5f016da8d5863e38879e::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit943401cd38ce5f016da8d5863e38879e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitfc5fc5108939805e5e233eb748dce4ed::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitfc5fc5108939805e5e233eb748dce4ed::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitfc5fc5108939805e5e233eb748dce4ed::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitfc5fc5108939805e5e233eb748dce4ed::$classMap;
 
         }, null, ClassLoader::class);
     }

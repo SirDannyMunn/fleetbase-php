@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  *
  * @copyright Copyright (c) Fleetbase Pte Ltd. <ron@fleetbase.io>
- * @license http://opensource.org/licenses/MIT MIT
+ * @license   http://opensource.org/licenses/MIT MIT
  */
 
 declare(strict_types=1);
@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace Fleetbase\Sdk;
 
 /**
- * Fleetbase PHP SDK Base Resource
+ * Fleetbase PHP SDK Base Service
  */
 class Service
 {
@@ -27,7 +27,7 @@ class Service
     public function __construct(string $resource, HttpClient $client, array $options = [])
     {
         $this->resource = $resource;
-        $this->namespace = Utils::pluralize($resource);
+        $this->namespace = strtolower(Utils::pluralize($resource));
         $this->client = $client;
         $this->options = $options;
     }
@@ -62,7 +62,7 @@ class Service
     public function findRecord(string $id, array $options = [])
     {
         $uri = $this->uri($id);
-        $data = $this->client->get($uri, $attributes, $options);
+        $data = $this->client->get($uri, [], $options);
         
         return $this->resolve($data);
     }
@@ -73,9 +73,11 @@ class Service
         $data = $this->client->get($uri, [], $options);
 
         if (is_array($data)) {
-            return array_map(function ($item) {
-                return $this->resolve($item);
-            }, $data);
+            return array_map(
+                function ($item) {
+                    return $this->resolve($item);
+                }, $data
+            );
         }
         
         return $data;
@@ -87,9 +89,11 @@ class Service
         $data = $this->client->get($uri, $query, $options);
 
         if (is_array($data)) {
-            return array_map(function ($item) {
-                return $this->resolve($item);
-            }, $data);
+            return array_map(
+                function ($item) {
+                    return $this->resolve($item);
+                }, $data
+            );
         }
         
         return $data;
@@ -112,7 +116,7 @@ class Service
         }
 
         $uri = $this->uri($id);
-        $data = $this->client->delete($uri, $attributes, $options);
+        $data = $this->client->delete($uri, [], $options);
         
         return $this->resolve($data);
     }
