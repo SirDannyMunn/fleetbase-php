@@ -12,7 +12,7 @@ final class PlaceTest extends TestCase
 {
     const TEST_RESOURCE_ID = 'place_123';
 
-    public function testIsCreatable()
+    public function testIsCreatable(): void
     {
         $publicKey = $_ENV['FLEETBASE_KEY'];
         $fleetbase = new Fleetbase($publicKey);
@@ -28,7 +28,7 @@ final class PlaceTest extends TestCase
         $this->assertInstanceOf(Place::class, $resource);
     }
 
-    public function testIsListable()
+    public function testIsListable(): void
     {
         $publicKey = $_ENV['FLEETBASE_KEY'];
         $fleetbase = new Fleetbase($publicKey);
@@ -39,7 +39,7 @@ final class PlaceTest extends TestCase
         $this->assertInstanceOf(Place::class, $resources[0]);
     }
 
-    public function testIsRetrievable()
+    public function testIsRetrievable(): void
     {
         $publicKey = $_ENV['FLEETBASE_KEY'];
         $fleetbase = new Fleetbase($publicKey);
@@ -49,7 +49,7 @@ final class PlaceTest extends TestCase
         $this->assertInstanceOf(Place::class, $resource);
     }
 
-    public function testIsSaveable()
+    public function testIsSaveable(): void
     {
         $publicKey = $_ENV['FLEETBASE_KEY'];
         $fleetbase = new Fleetbase($publicKey);
@@ -60,7 +60,7 @@ final class PlaceTest extends TestCase
         $this->assertInstanceOf(Place::class, $resource);
     }
 
-    public function testIsUpdatable()
+    public function testIsUpdatable(): void
     {
         $publicKey = $_ENV['FLEETBASE_KEY'];
         $fleetbase = new Fleetbase($publicKey);
@@ -74,7 +74,7 @@ final class PlaceTest extends TestCase
         $this->assertEquals($newName, $resource->getAttribute('name'));
     }
 
-    public function testIsDeletable()
+    public function testIsDeletable(): void
     {
         $publicKey = $_ENV['FLEETBASE_KEY'];
         $fleetbase = new Fleetbase($publicKey);

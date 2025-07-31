@@ -19,17 +19,11 @@ namespace Fleetbase\Sdk;
  */
 class Service
 {
-    private string $resource;
-    private string $namespace;
-    private array $options = [];
-    private HttpClient $client;
+    private readonly string $namespace;
 
-    public function __construct(string $resource, HttpClient $client, array $options = [])
+    public function __construct(private readonly string $resource, private readonly HttpClient $client, private readonly array $options = [])
     {
-        $this->resource = $resource;
-        $this->namespace = Utils::createNamespace($resource);
-        $this->client = $client;
-        $this->options = $options;
+        $this->namespace = Utils::createNamespace($this->resource);
     }
 
     private function resolve($data)
@@ -38,12 +32,12 @@ class Service
         return new $class((array) $data, $this);
     }
 
-    public function uri(?string $path = null)
+    public function uri(?string $path = null): string
     {
         return $this->namespace . ($path ? '/' . $path : '');
     }
 
-    public function uriForResource(string $id, ?string $path = null)
+    public function uriForResource(string $id, ?string $path = null): string
     {
         return $this->namespace . '/' . $id . ($path ? '/' . $path : '');
     }
@@ -79,9 +73,7 @@ class Service
 
         if (is_array($data)) {
             return array_map(
-                function ($item) {
-                    return $this->resolve($item);
-                },
+                fn($item) => $this->resolve($item),
                 $data
             );
         }
@@ -96,9 +88,7 @@ class Service
 
         if (is_array($data)) {
             return array_map(
-                function ($item) {
-                    return $this->resolve($item);
-                },
+                fn($item) => $this->resolve($item),
                 $data
             );
         }

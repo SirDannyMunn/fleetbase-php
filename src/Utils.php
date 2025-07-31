@@ -34,13 +34,12 @@ class Utils
         return $inflector->classify($string);
     }
 
-    public static function createNamespace(string $namespace)
+    public static function createNamespace(string $namespace): string
     {
         $words = preg_split('/(?=[A-Z])/', $namespace, -1,  PREG_SPLIT_NO_EMPTY);
         $namespace = implode('-', $words);
-        $namespace = strtolower(Utils::pluralize($namespace));
 
-        return $namespace;
+        return strtolower((string) Utils::pluralize($namespace));
     }
 
     public static function get($target, $key, $default = null)
@@ -75,9 +74,9 @@ class Utils
         return $value instanceof Closure ? $value() : $value;
     }
 
-    public static function dd()
+    public static function dd(): never
     {
-        array_map(function ($x) {
+        array_map(function ($x): void {
             var_dump($x);
         }, func_get_args());
 

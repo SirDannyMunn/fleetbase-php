@@ -22,7 +22,7 @@ use Fleetbase\Sdk\Services\OrderService;
  */
 class Order extends Resource
 {
-    public function __constructor(array $attributes = [], ?OrderService $service = null, array $options = [])
+    public function __constructor(array $attributes = [], ?OrderService $service = null, array $options = []): void
     {
         parent::__construct($attributes, $service, $options);
     }

@@ -19,7 +19,7 @@ namespace Fleetbase\Sdk;
  */
 class Arr
 {
-    public static function every(array $arr, callable $predicate)
+    public static function every(array $arr, callable $predicate): bool
     {
         foreach ($arr as $e) {
             if (!call_user_func($predicate, $e)) {
@@ -30,13 +30,11 @@ class Arr
         return true;
     }
 
-    public static function any(array $arr, callable $predicate)
+    public static function any(array $arr, callable $predicate): bool
     {
         return !static::every(
             $arr,
-            function ($e) use ($predicate) {
-                return !call_user_func($predicate, $e);
-            }
+            fn($e): bool => !call_user_func($predicate, $e)
         );
     }
 

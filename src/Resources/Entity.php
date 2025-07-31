@@ -22,7 +22,7 @@ use Fleetbase\Sdk\Service;
  */
 class Entity extends Resource
 {
-    public function __constructor(array $attributes = [], ?Service $service = null, array $options = [])
+    public function __constructor(array $attributes = [], ?Service $service = null, array $options = []): void
     {
         parent::__construct($attributes, $service, $options);
     }

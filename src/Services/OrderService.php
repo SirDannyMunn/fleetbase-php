@@ -22,75 +22,76 @@ use Fleetbase\Sdk\HttpClient;
  */
 class OrderService extends Service
 {
+    public $client;
     public function __construct(HttpClient $client, array $options = [])
     {
         parent::__construct('Order', $client, $options);
     }
 
-    public function getDistanceAndTime($id, $params = [], $options = [])
+    public function getDistanceAndTime(string $id, $params = [], $options = [])
     {
         $uri = $this->uriForResource($id, 'distance-and-time');
 
         return $this->client->get($uri, $params, $options);
     }
 
-    public function getNextActivity($id, $params = [], $options = [])
+    public function getNextActivity(string $id, $params = [], $options = [])
     {
         $uri = $this->uriForResource($id, 'next-activity');
 
         return $this->client->get($uri, $params, $options);
     }
 
-    public function dispatch($id, $params = [], $options = [])
+    public function dispatch(string $id, $params = [], $options = [])
     {
         $uri = $this->uriForResource($id, 'dispatch');
 
         return $this->client->post($uri, $params, $options);
     }
 
-    public function start($id, $params = [], $options = [])
+    public function start(string $id, $params = [], $options = [])
     {
         $uri = $this->uriForResource($id, 'start');
 
         return $this->client->post($uri, $params, $options);
     }
 
-    public function updateActivity($id, $params = [], $options = [])
+    public function updateActivity(string $id, $params = [], $options = [])
     {
         $uri = $this->uriForResource($id, 'update-activity');
 
         return $this->client->post($uri, $params, $options);
     }
 
-    public function setDestination($id, $destinationId, $params = [], $options = [])
+    public function setDestination(string $id, string $destinationId, $params = [], $options = [])
     {
         $uri = $this->uriForResource($id, 'set-destination/' . $destinationId);
 
         return $this->client->post($uri, $params, $options);
     }
 
-    public function captureQrCode($id, $subjectId = null, $params = [], $options = [])
+    public function captureQrCode(string $id, $subjectId = null, $params = [], $options = [])
     {
-        $uri = $this->uriForResource($id, 'capture-qr' . $subjectId ? '' : '/' . $subjectId);
+        $uri = $this->uriForResource($id, 'capture-qr' . $subjectId !== '' ? '' : '/' . $subjectId);
 
         return $this->client->post($uri, $params, $options);
     }
 
-    public function captureSignature($id, $subjectId = null, $params = [], $options = [])
+    public function captureSignature(string $id, $subjectId = null, $params = [], $options = [])
     {
-        $uri = $this->uriForResource($id, 'capture-signature' . $subjectId ? '' : '/' . $subjectId);
+        $uri = $this->uriForResource($id, 'capture-signature' . $subjectId !== '' ? '' : '/' . $subjectId);
 
         return $this->client->post($uri, $params, $options);
     }
 
-    public function complete($id, $params = [], $options = [])
+    public function complete(string $id, $params = [], $options = [])
     {
         $uri = $this->uriForResource($id, 'complete');
 
         return $this->client->post($uri, $params, $options);
     }
 
-    public function cancel($id, $params = [], $options = [])
+    public function cancel(string $id, $params = [], $options = [])
     {
         $uri = $this->uriForResource($id, 'cancel');
 

@@ -21,23 +21,10 @@ use Exception;
  */
 class Resource
 {
-    private array $attributes = [];
-    private string $version = 'v1';
-    private array $options = [];
     private array $dirtyAttributes = [];
-    private array $changes = [];
-    private bool $isSaving = false;
-    private bool $isLoading = false;
-    private bool $isDestroying = false;
-    private bool $isReloading = false;
-    private ?Service $service;
 
-    public function __construct(array $attributes = [], ?Service $service = null, ?array $options = [])
+    public function __construct(private array $attributes = [], private readonly ?Service $service = null, private readonly array $options = [])
     {
-        $this->attributes = $attributes;
-        $this->service = $service;
-        $this->options = $options;
-        $this->version = $options['version'] ?? 'v1';
     }
 
     public function __get(string $name)
@@ -49,12 +36,13 @@ class Resource
         if ($name === 'isDestroyed') {
             return isset($this->attributes['deleted']) && $this->attributes['deleted'] === true;
         }
+        return null;
     }
 
     public function create($attributes = [], $options = [])
     {
         $options = array_merge($options, [
-            'onAfter' => function ($response) {
+            'onAfter' => function ($response): void {
                 $this->mergeAttributes((array) $response);
             }
         ]);
@@ -65,7 +53,7 @@ class Resource
     public function update($attributes = [], $options = [])
     {
         $options = array_merge($options, [
-            'onAfter' => function ($response) {
+            'onAfter' => function ($response): void {
                 $this->mergeAttributes((array) $response);
             }
         ]);
@@ -76,7 +64,7 @@ class Resource
     public function destroy($options = [])
     {
         $options = array_merge($options, [
-            'onAfter' => function ($response) {
+            'onAfter' => function ($response): void {
                 $this->resetAttributes((array) $response);
             }
         ]);
@@ -109,23 +97,19 @@ class Resource
         if (is_array($property)) {
             return Arr::every(
                 $property,
-                function ($prop) {
-                    return $this->hasAttribute($prop);
-                }
+                fn($prop) => $this->hasAttribute($prop)
             );
         }
 
         return in_array($property, array_keys($this->attributes ?? []));
     }
 
-    public function isAttributeFilled($property)
+    public function isAttributeFilled($property): bool
     {
         if (is_array($property)) {
             return $this->hasAttribute($property) && Arr::every(
                 $property,
-                function ($prop) {
-                    return !empty($this->getAttribute($prop));
-                }
+                fn($prop): bool => !empty($this->getAttribute($prop))
             );
         }
 
@@ -136,7 +120,7 @@ class Resource
     {
         $attributes = [];
 
-        if (empty($properties)) {
+        if ($properties === null || $properties === []) {
             return $this->attributes;
         }
 
@@ -147,8 +131,9 @@ class Resource
         if (!is_array($properties)) {
             throw new Exception('No attribute properties provided!');
         }
+        $counter = count($properties);
 
-        for ($i = 0; $i < count($properties); $i++) {
+        for ($i = 0; $i < $counter; $i++) {
             $property = $properties[$i];
 
             if (!is_string($property)) {
@@ -167,27 +152,18 @@ class Resource
         return $attributes;
     }
 
-    private function mergeAttributes(array $attributes = [])
+    private function mergeAttributes(array $attributes = []): void
     {
         $this->attributes = array_merge($this->attributes, $attributes);
     }
 
-    private function resetAttributes(array $attributes)
+    private function resetAttributes(array $attributes): void
     {
         $this->attributes = $attributes;
     }
 
-    private function getDirtyAttributes(): array
-    {
-        return $this->dirtyAttributes;
-    }
-
-    public function isDirty($attribute)
+    public function isDirty($attribute): bool
     {
         return in_array($attribute, array_keys($this->dirtyAttributes));
-    }
-
-    private function setFlags(array $flags = [])
-    {
     }
 }

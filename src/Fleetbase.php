@@ -23,8 +23,9 @@ use Fleetbase\Sdk\Services\OrderService;
  */
 class Fleetbase
 {
-    private string $version;
-    private array $options;
+    private readonly HttpClient $client;
+    private readonly string $version;
+    private readonly array $options;
 
     public function __construct(string $publicKey, array $config = [], bool $debug = false)
     {
@@ -42,18 +43,6 @@ class Fleetbase
         }
 
         $this->client = $client = new HttpClient($options);
-        $this->orders = new OrderService($client);
-        $this->entities = new Service('Entity', $client);
-        $this->places = new Service('Place', $client);
-        $this->drivers = new Service('Driver', $client);
-        $this->vehicles = new Service('Vehicle', $client);
-        $this->vendors = new Service('Vendor', $client);
-        $this->contacts = new Service('Contact', $client);
-        $this->serviceAreas = new Service('ServiceArea', $client);
-        $this->zones = new Service('Zone', $client);
-        $this->trackingStatuses = new Service('TrackingStatues', $client);
-        $this->serviceRates = new Service('ServiceRate', $client);
-        $this->serviceQuotes = new Service('ServiceQuote', $client);
     }
 
     public function setApiKey(string $publicKey): Fleetbase

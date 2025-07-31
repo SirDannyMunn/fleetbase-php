@@ -25,16 +25,14 @@ class HttpClient
 {
     private string $host;
     private string $namespace;
-    private array $options = [];
     private Client $client;
     private Response $lastResponse;
 
-    public function __construct(array $options = [])
+    public function __construct(private array $options = [])
     {
-        $this->options = $options;
-        $this->host = $options['host'];
-        $this->namespace = $options['namespace'];
-        $this->client = $this->createClient($options);
+        $this->host = $this->options['host'];
+        $this->namespace = $this->options['namespace'];
+        $this->client = $this->createClient($this->options);
     }
 
     public function setHost(string $host) : HttpClient
@@ -75,9 +73,9 @@ class HttpClient
 
     private function createClient(?array $options = null) : Client
     {
-        $options = $options ?? $this->getOptions();
+        $options ??= $this->getOptions();
 
-        $client = new Client(
+        return new Client(
             [
             'base_uri' => $this->buildRequestUrl(),
             'headers' => [
@@ -87,14 +85,11 @@ class HttpClient
             ]
             ]
         );
-
-        return $client;
     }
 
     private function buildRequestUrl(string $path = '') : string
     {
-        $url = trim($this->host . '/' . $this->namespace . '/' . $path);
-        return $url;
+        return trim($this->host . '/' . $this->namespace . '/' . $path);
     }
 
     private function makeRequest(string $path, string $method = 'GET', array $data = [], array $options = [])
@@ -118,7 +113,7 @@ class HttpClient
         // get response body and contents
         $body = $response->getBody();
         $contents = $body->getContents();
-        $json = json_decode($contents);
+        $json = json_decode((string) $contents);
 
         // if error response throw exception
         if (is_object($json) && isset($json->error)) {
@@ -133,27 +128,27 @@ class HttpClient
         return $json;
     }
 
-    public function post(string $path, array $data = [], $options = [])
+    public function post(string $path, array $data = [], array $options = [])
     {
         return $this->makeRequest($path, 'POST', $data, $options);
     }
 
-    public function get(string $path, array $data = [], $options = [])
+    public function get(string $path, array $data = [], array $options = [])
     {
         return $this->makeRequest($path, 'GET', $data, $options);
     }
 
-    public function delete(string $path, array $data = [], $options = [])
+    public function delete(string $path, array $data = [], array $options = [])
     {
         return $this->makeRequest($path, 'DELETE', $data, $options);
     }
 
-    public function put(string $path, array $data = [], $options = [])
+    public function put(string $path, array $data = [], array $options = [])
     {
         return $this->makeRequest($path, 'PUT', $data, $options);
     }
 
-    public function patch(string $path, array $data = [], $options = [])
+    public function patch(string $path, array $data = [], array $options = [])
     {
         return $this->makeRequest($path, 'PATCH', $data, $options);
     }

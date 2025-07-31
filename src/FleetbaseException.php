@@ -14,9 +14,11 @@ declare(strict_types=1);
 
 namespace Fleetbase\Sdk;
 
+use RuntimeException;
+
 /**
  * A general exception for fleetbase/fleetbase-php.
  */
-class FleetbaseException extends \RuntimeException
+class FleetbaseException extends RuntimeException
 {
 }
